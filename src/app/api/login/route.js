@@ -30,9 +30,22 @@ export async function GET(req) {
       userTokenInfo.horasConcluidas = hours.horasConcluidas
     }
 
-    return NextResponse.json(userTokenInfo)
+    return NextResponse.json(userTokenInfo, {
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+      },
+    })
   } catch (err) {
-    return NextResponse.json({ error: err }, { status: 401 })
+    return NextResponse.json({ error: err }, { 
+      status: 401,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+      },
+    })
   }
 }
 
@@ -85,13 +98,27 @@ export async function POST(req) {
       token,
       user,
       schoolInfo,
+    }, 
+    {
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+      },
     })
   } else {
     return NextResponse.json(
       {
         error: 'Informações incorretas. Por favor, verifique seu email e senha',
       },
-      { status: 400 },
+      { 
+        status: 400,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+          'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+        },
+      },
     )
   }
 }

@@ -81,5 +81,11 @@ export async function PUT(req) {
     })
   })
 
-  return NextResponse.json('Sucesso')
+  return NextResponse.json('Sucesso', {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    },
+  })
 }

@@ -20,7 +20,13 @@ export async function GET(req) {
     },
   })
 
-  return NextResponse.json(student)
+  return NextResponse.json(student, {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    },
+  })
 }
 
 export async function POST(req) {
@@ -55,7 +61,13 @@ export async function POST(req) {
     },
   })
 
-  return NextResponse.json('Cadastrado')
+  return NextResponse.json('Cadastrado', {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    },
+  })
 }
 
 export async function PUT(req) {
@@ -74,7 +86,13 @@ export async function PUT(req) {
     },
   })
 
-  return NextResponse.json('Aluno editado')
+  return NextResponse.json('Aluno editado', {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    },
+  })
 }
 
 export async function DELETE(req) {
@@ -161,5 +179,11 @@ export async function DELETE(req) {
     },
   })
 
-  return NextResponse.json('Aluno removido com sucesso')
+  return NextResponse.json('Aluno removido com sucesso', {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    },
+  })
 }
