@@ -1,0 +1,198 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider          = "mysql"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+  relationMode      = "prisma"
+}
+
+generator erd {
+  provider = "prisma-erd-generator"
+}
+
+model Escola {
+  // Attributes
+  id         Int    @id @default(autoincrement()) @map("codEscola")
+  nomeEscola String
+
+  // Relations
+  Usuario Usuario[]
+  Turma   Turma[]
+}
+
+model Turma {
+  // Attributes
+  id        Int    @id @default(autoincrement()) @map("codTurma")
+  ano       Int
+  nomeTurma String
+
+  // Relations
+  escola    Escola @relation(fields: [codEscola], references: [id])
+  codEscola Int
+
+  Usuario Usuario[]
+
+  // Needed when using planetScale
+  @@index([codEscola])
+}
+
+model tipoUsuario {
+  // Attributes
+  id          Int    @id @default(autoincrement()) @map("codTipoUsuario")
+  tipoUsuario String
+
+  // Relations
+  Usuario Usuario[]
+}
+
+model Usuario {
+  // Attributes
+  id    Int    @id @default(autoincrement()) @map("codUsuario")
+  email String @unique
+  senha String
+  nome  String
+  rm    Int?   @unique
+
+  // Relations
+  escolaRel Escola? @relation(fields: [codEscola], references: [id])
+  codEscola Int?
+
+  tipoUsuario    tipoUsuario @relation(fields: [codTipoUsuario], references: [id])
+  codTipoUsuario Int
+
+  turma    Turma? @relation(fields: [codTurma], references: [id])
+  codTurma Int?
+
+  Entrega            Entrega[]
+  SolicitacaoSuporte SolicitacaoSuporte[]
+  Resposta           Resposta[]
+  Correcao           Correcao[]
+  Horas              Horas[]
+
+  // Needed when using planetScale
+  @@index([codEscola])
+  @@index([codTipoUsuario])
+  @@index([codTurma])
+}
+
+model Atividade {
+  // Attributes
+  id             Int      @id @default(autoincrement()) @map("codAtividade")
+  titulo         String
+  descricao      String
+  anexos         String?
+  horasAtividade Int
+  dataCriacao    DateTime @default(now())
+  prazoEntrega   DateTime
+
+  // Relations
+  tipoAtividade    tipoAtividade @relation(fields: [codTipoAtividade], references: [id])
+  codTipoAtividade Int
+
+  entrega Entrega[]
+
+  // Needed when using planetScale
+  @@index([codTipoAtividade])
+}
+
+model tipoAtividade {
+  // Attributes
+  id            Int    @id @default(autoincrement()) @map("codTipoAtividade")
+  tipoAtividade String
+
+  // Relations
+  Atividade Atividade[]
+}
+
+model Entrega {
+  // Attributes
+  id          Int       @id @default(autoincrement()) @map("codEntrega")
+  dataEntrega DateTime?
+  conteudo    Json?
+  entregue    Boolean   @default(false)
+
+  // Relations
+  aluno    Usuario @relation(fields: [codAluno], references: [id])
+  codAluno Int
+
+  atividade    Atividade @relation(fields: [codAtividade], references: [id])
+  codAtividade Int
+
+  Correcao Correcao?
+
+  // Needed when using planetScale
+  @@index([codAluno])
+  @@index([codAtividade])
+}
+
+model SolicitacaoSuporte {
+  // Attributes
+  id          Int      @id @default(autoincrement()) @map("codSolicitacao")
+  titulo      String
+  conteudo    String
+  dataCriacao DateTime @default(now())
+
+  // Relations
+  aluno    Usuario @relation(fields: [codAluno], references: [id])
+  codAluno Int
+
+  Resposta Resposta?
+
+  // Needed when using planetScale
+  @@index([codAluno])
+}
+
+model Resposta {
+  // Attributes
+  id           Int      @id @default(autoincrement()) @map("codResposta")
+  dataResposta DateTime @default(now())
+  resposta     String
+
+  // Relations
+  coordenador    Usuario @relation(fields: [codCoordenador], references: [id])
+  codCoordenador Int
+
+  solicitacaoSuporte SolicitacaoSuporte @relation(fields: [codSolicitacao], references: [id])
+  codSolicitacao     Int                @unique
+
+  // Needed when using planetScale
+  @@index([codCoordenador])
+  @@index([codSolicitacao])
+}
+
+model Correcao {
+  // Attributes
+  id              Int      @id @default(autoincrement()) @map("codCorrecao")
+  dataCorrecao    DateTime @default(now())
+  conteudo        String
+  entregaAprovada Boolean
+
+  // Relations
+  coordenador    Usuario @relation(fields: [codCoordenador], references: [id])
+  codCoordenador Int
+
+  entrega    Entrega @relation(fields: [codEntrega], references: [id])
+  codEntrega Int     @unique
+
+  // Needed when using planetScale
+  @@index([codEntrega])
+  @@index([codCoordenador])
+}
+
+model Horas {
+  id              Int @id @default(autoincrement()) @map("codHoras")
+  horasAnuais     Int
+  horasConcluidas Int
+  ano             Int
+
+  aluno    Usuario @relation(fields: [codAluno], references: [id])
+  codAluno Int
+
+  @@index([codAluno])
+}
