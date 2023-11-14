@@ -111,8 +111,6 @@ export default class Usuario {
       },
     })
 
-    console.log(user)
-
     // Verify if the params are correct
     if (user) {
       const passwordIsCorrect = await bcrypt.compare(password, user.senha)
