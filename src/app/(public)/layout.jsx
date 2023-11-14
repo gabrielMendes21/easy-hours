@@ -1,6 +1,6 @@
-import '../globals.css'
-import { PageContextProvider } from '../context/PageContext'
+import { PageContextProvider } from '@/context/PageContext'
 import { Inter } from 'next/font/google'
+import '../globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
 

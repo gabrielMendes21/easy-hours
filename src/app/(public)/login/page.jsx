@@ -1,10 +1,10 @@
 'use client'
 
-import { PageContext } from '@/app/context/PageContext'
 import Header from '@/components/Header'
 import LoadingIcon from '@/components/LoadingIcon'
 import LoginErrorMessages from '@/components/LoginErrorMessages'
 import Main from '@/components/Main'
+import { PageContext } from '@/context/PageContext'
 import { ArrowRight } from 'lucide-react'
 import Image from 'next/image'
 import { useContext, useState } from 'react'

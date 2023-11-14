@@ -1,14 +1,13 @@
 'use client'
 
+import { PageContext } from '@/context/PageContext'
 import Image from 'next/image'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { useContext } from 'react'
 import darkLogo from '../assets/dark-logo.svg'
 import menu from '../assets/hamburger.svg'
 import closeHamburger from '../assets/x.svg'
-
-import { PageContext } from '@/app/context/PageContext'
-import { usePathname } from 'next/navigation'
-import { useContext } from 'react'
 
 function Menu() {
   const { isOpen, setIsOpen, user, handleMenu, logout } =
