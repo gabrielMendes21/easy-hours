@@ -1,6 +1,6 @@
 'use client'
 
-import { PageContext } from '@/app/context/PageContext'
+import { PageContext } from '@/context/PageContext'
 import { useContext } from 'react'
 
 export default function UserInfo() {

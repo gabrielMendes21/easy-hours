@@ -29,7 +29,7 @@ export default function Activity({ task }) {
       .finally(() => {
         setLoadingFiles('Você não possui anexos')
       })
-  }, [])
+  })
 
   const handleChangeKnowledge = (e) => {
     setKnowledge(e.target.value)
