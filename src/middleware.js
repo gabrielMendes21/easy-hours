@@ -3,7 +3,7 @@
 
 import { NextResponse } from 'next/server'
 
-const loginUrl = `http://localhost:3000/login`
+const loginUrl = `https://test-api-gray.vercel.app/login`
 
 export function middleware(req) {
   // Auth Token
