@@ -34,11 +34,14 @@ export function PageContextProvider({ children }) {
 
       // Redirect to user dashboard
       if (user.tipoUsuario === 'Coordenador ETEC') {
-        router.push('/coordenador-ETEC/dashboard')
+        // router.push('/coordenador-ETEC/dashboard')
+        location.replace('/coordenador-ETEC/dashboard')
       } else if (user.codTipoUsuario === 'Coordenador IBM') {
-        router.push('/coordenador-IBM/dashboard')
+        // router.push('/coordenador-IBM/dashboard')
+        location.replace('/coordenador-IBM/dashboard')
       } else {
-        router.push('/')
+        // router.push('/')
+        location.replace('/')
       }
     } catch (err) {
       return err.response.data.error
