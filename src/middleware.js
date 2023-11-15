@@ -3,7 +3,7 @@
 
 import { NextResponse } from 'next/server'
 
-const loginUrl = `https://test-api-gray.vercel.app/login`
+const loginUrl = `${process.env.NEXT_PUBLIC_WEB_URL}/login`
 
 export function middleware(req) {
   // Auth Token
