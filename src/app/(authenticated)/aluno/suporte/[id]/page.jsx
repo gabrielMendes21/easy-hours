@@ -12,7 +12,7 @@ export async function generateStaticParams() {
   })
 }
 
-export default function Suporte({ params }) {
+export default async function Suporte({ params }) {
   const convertISOtoDateFormat = (string) => {
     let date = new Date(string)
     date = date.toLocaleDateString()
@@ -30,7 +30,7 @@ export default function Suporte({ params }) {
     return response.data
   }
 
-  const supportRequest = getSupportRequest()
+  const supportRequest = await getSupportRequest()
 
   return (
     <Main>
@@ -69,7 +69,7 @@ export default function Suporte({ params }) {
             </p>
 
             <span className="text-xs block">
-              {supportRequest.Resposta.coordenador.nome} -{' '}
+              {supportRequest.Resposta.coordenador.nome} - {' '}
               {supportRequest.Resposta.coordenador.tipoUsuario.tipoUsuario}
             </span>
             <span className="font-light text-xs text[#525252]">
