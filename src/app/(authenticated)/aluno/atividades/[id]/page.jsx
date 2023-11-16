@@ -18,13 +18,9 @@ export default async function Atividade({ params }) {
   const cookieStore = cookies()
   const token = cookieStore.get('auth-token').value
 
-  const userInfoResponse = await api.get(`/login`, {
-    params: {
-      token,
-    },
-  })
+  const user = await auth(token)
 
-  const userId = userInfoResponse.data.sub
+  const userId = user.sub
 
   // Get tasks
   const tasksResponse = await api.get(`/aluno/atividades?id=${userId}`)

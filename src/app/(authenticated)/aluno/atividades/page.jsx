@@ -1,6 +1,7 @@
 import H1 from '@/components/H1'
 import Main from '@/components/Main'
 import TasksTab from '@/components/TasksTab'
+import { auth } from '@/lib/auth'
 import axios from 'axios'
 import { cookies } from 'next/headers'
 
@@ -10,14 +11,7 @@ export default async function Atividades() {
   const token = cookieStore.get('auth-token').value
 
   // Get the data from the token
-  const userResponse = await axios(
-    `${process.env.NEXT_PUBLIC_WEB_URL}api/login`,
-    {
-      params: {
-        token,
-      },
-    },
-  )
+  const user = await auth(token)
 
   // Now
   const now = new Date()
@@ -25,7 +19,7 @@ export default async function Atividades() {
 
   // Get all tasks
   const tasksResponse = await axios(
-    `${process.env.NEXT_PUBLIC_WEB_URL}api/aluno/atividades?id=${userResponse.data.sub}`,
+    `${process.env.NEXT_PUBLIC_WEB_URL}api/aluno/atividades?id=${user.sub}`,
   )
 
   const tasks = tasksResponse.data
