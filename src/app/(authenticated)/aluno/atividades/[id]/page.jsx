@@ -1,6 +1,7 @@
 import Activity from '@/components/Activity'
 import Main from '@/components/Main'
 import { api } from '@/lib/api'
+import { auth } from '@/lib/auth'
 import { cookies } from 'next/headers'
 
 export async function generateStaticParams() {
