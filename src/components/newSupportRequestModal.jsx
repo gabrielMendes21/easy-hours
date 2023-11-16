@@ -1,6 +1,6 @@
 'use client'
 
-import { PageContext } from '@/app/context/PageContext'
+import { PageContext } from '@/context/PageContext'
 import { api } from '@/lib/api'
 import { PlusCircle } from 'lucide-react'
 import { useRouter } from 'next/navigation'
