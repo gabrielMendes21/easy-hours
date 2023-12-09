@@ -26,15 +26,12 @@ model Turma {
   nomeTurma String
 
   // Relations
-  escola    Escola @relation(fields: [codEscola], references: [id])
+  escola    Escola    @relation(fields: [codEscola], references: [id])
   codEscola Int
-
-  aluno    Usuario @relation(fields: [codAluno], references: [id])
-  codAluno Int
+  Usuario   Usuario[]
 
   // Needed when using planetScale
   @@index([codEscola])
-  @@index([codAluno])
 }
 
 model Usuario {
@@ -52,16 +49,19 @@ model Usuario {
   tipoUsuario    tipoUsuario @relation(fields: [codTipoUsuario], references: [id])
   codTipoUsuario Int
 
+  turma    Turma @relation(fields: [codTurma], references: [id])
+  codTurma Int
+
   Entrega            Entrega[]
   SolicitacaoSuporte SolicitacaoSuporte[]
   Resposta           Resposta[]
   Correcao           Correcao[]
   Horas              Horas[]
-  Turma              Turma[]
 
   // Needed when using planetScale
   @@index([codEscola])
   @@index([codTipoUsuario])
+  @@index([codTurma])
 }
 
 model tipoUsuario {

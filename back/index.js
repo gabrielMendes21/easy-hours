@@ -1,1 +1,0 @@
-console.log("Back-end da aplicação")
