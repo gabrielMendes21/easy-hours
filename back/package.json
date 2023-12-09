@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "type": "module",
+  "prisma": {
+    "seed": "node ./prisma/seed.js"
+  },
   "scripts": {
     "dev": "nodemon ./src/index.js"
-  },
-  "prisma": {
-    "seed": "node prisma/seed.js"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@prisma/client": "^5.7.0",
+    "bcrypt": "^5.1.1",
     "express": "^4.18.2"
   }
 }
