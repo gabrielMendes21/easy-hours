@@ -41,15 +41,13 @@ model Usuario {
   senha String
   nome  String
   rm    Int?   @unique
+  role  Role
 
   // Relations
   escolaRel Escola? @relation(fields: [codEscola], references: [id])
   codEscola Int?
 
-  tipoUsuario    tipoUsuario @relation(fields: [codTipoUsuario], references: [id])
-  codTipoUsuario Int
-
-  turma    Turma @relation(fields: [codTurma], references: [id])
+  turma    Turma? @relation(fields: [codTurma], references: [id])
   codTurma Int
 
   Entrega            Entrega[]
@@ -60,17 +58,8 @@ model Usuario {
 
   // Needed when using planetScale
   @@index([codEscola])
-  @@index([codTipoUsuario])
+  // @@index([codTipoUsuario])
   @@index([codTurma])
-}
-
-model tipoUsuario {
-  // Attributes
-  id          Int    @id @default(autoincrement()) @map("codTipoUsuario")
-  tipoUsuario String
-
-  // Relations
-  Usuario Usuario[]
 }
 
 model Atividade {
@@ -189,9 +178,6 @@ model Horas {
   @@index([codAluno])
 }
 
-// Users roles
-// Student, ETEC_COORDINATOR and IBM_COORDINATOR are system users
-// ADMIN will add schools to P-TECH program and coordinators
 enum Role {
   STUDENT
   ETEC_COORDINATOR

@@ -1,26 +1,8 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const bcrypt = require('bcrypt')
-const { PrismaClient } = require('@prisma/client')
-const prisma = new PrismaClient()
+import bcrypt from 'bcrypt'
+import prisma from '../src/lib/prisma.js'
 
 async function seed() {
-  await prisma.tipoUsuario.createMany({
-    data: [
-      {
-        tipoUsuario: 'Aluno',
-      },
-      {
-        tipoUsuario: 'Coordenador ETEC',
-      },
-      {
-        tipoUsuario: 'Coordenador IBM',
-      },
-      {
-        tipoUsuario: 'ReportManager',
-      },
-    ],
-  })
-
   await prisma.tipoAtividade.createMany({
     data: [
       {
@@ -42,7 +24,7 @@ async function seed() {
       email: 'guilherme@email.com',
       senha: hashedPassword1,
       nome: 'Guilherme',
-      codTipoUsuario: 3,
+      role: 'IBM_COORDINATOR'
     },
   })
 
@@ -64,14 +46,14 @@ async function seed() {
                 senha: hashedPassword2,
                 nome: 'Gabriel da Silva Mendes',
                 rm: 22302,
-                codTipoUsuario: 1,
+                role: 'STUDENT'
               },
               {
                 email: 'danilo.rodrigues108@etec.sp.gov.br',
                 senha: hashedPassword3,
                 nome: 'Danilo Costa Rodrigues',
                 rm: 22388,
-                codTipoUsuario: 1,
+                role: 'STUDENT'
               },
             ],
           },
@@ -82,7 +64,7 @@ async function seed() {
           email: 'rogerio.costa3@etec.sp.gov.br',
           senha: hashedPassword4,
           nome: 'Rogério Bezerra Costa',
-          codTipoUsuario: 2,
+          role: 'ETEC_COORDINATOR'
         },
       },
     },
@@ -222,15 +204,15 @@ async function seed() {
     ],
   })
 
-  const hashedPassword5 = await bcrypt.hash('123456789', 10)
-  await prisma.usuario.create({
-    data: {
-      nome: 'Report manager',
-      email: 'root@root.com',
-      senha: hashedPassword5,
-      codTipoUsuario: 4,
-    },
-  })
+  // const hashedPassword5 = await bcrypt.hash('123456789', 10)
+  // await prisma.usuario.create({
+  //   data: {
+  //     nome: 'Report manager',
+  //     email: 'root@root.com',
+  //     senha: hashedPassword5,
+  //     codTipoUsuario: 4,
+  //   },
+  // })
 }
 
 seed()
