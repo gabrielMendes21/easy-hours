@@ -188,3 +188,13 @@ model Horas {
 
   @@index([codAluno])
 }
+
+// Users roles
+// Student, ETEC_COORDINATOR and IBM_COORDINATOR are system users
+// ADMIN will add schools to P-TECH program and coordinators
+enum Role {
+  STUDENT
+  ETEC_COORDINATOR
+  IBM_COORDINATOR
+  ADMIN
+}
