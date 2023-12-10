@@ -1,18 +1,14 @@
-// IMPORTS
-
 import cors from 'cors'
 import express from 'express'
 import studentsRoute from './routes/users/students.js'
 
 // CONFIGS
-
 const app = express()
-
 app.use(cors())
 
 // ROUTES
 
-// student
+// STUDENT
 app.use(studentsRoute)
 
 

@@ -1,11 +1,10 @@
 # Tarefas principais
-[] Organizar o banco de dados
+[X] Organizar o banco de dados
     * Relacionamentos entre tabelas, como o relacionamento entre alunos e turma
 
 [] Construir o backend
     [] Trazer as funcionalidades feitas na api do next
     [] Encontrar uma forma de upload de arquivos, inclusive no ambiente de produção
-    [] No banco de dados, arrumar o relacionamento entre aluno (usuário) e turma
     
 [] Organizar o código
 
