@@ -1,5 +1,6 @@
 import cors from 'cors'
 import express from 'express'
+import loginRoute from './routes/users/login.js'
 import studentsRoute from './routes/users/students.js'
 
 // CONFIGS
@@ -10,6 +11,7 @@ app.use(cors())
 
 // STUDENT
 app.use(studentsRoute)
+app.use(loginRoute)
 
 
 // SERVER
