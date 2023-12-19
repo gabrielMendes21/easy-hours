@@ -8,7 +8,7 @@ const router = express.Router()
 router.use(express.json())
 
 // ROUTE -> GET STUDENTS
-router.get('/students', async (req, res) => {
+router.get('/alunos', async (req, res) => {
   try {
     // GET ID OF STUDENT CLASS
     const { classId } = req.query
@@ -51,7 +51,7 @@ router.get('/students', async (req, res) => {
 })
 
 // ROUTE -> ADD STUDENTS TO THE SYSTEM
-router.post('/students', async (req, res) => {
+router.post('/alunos', async (req, res) => {
     try {
       // GET SCHOOL AND CLASS ID  
       const schoolId = req.query.school
@@ -134,7 +134,7 @@ router.post('/students', async (req, res) => {
 })
 
 // ROUTE -> GET STUDENT
-router.get('/students/:id', async (req, res) => {
+router.get('/alunos/:id', async (req, res) => {
   try {
     // GET STUDENT ID, SENT BY ROUTE PARAMS
     const { id } = req.params
@@ -171,7 +171,7 @@ router.get('/students/:id', async (req, res) => {
 
 
 // ROUTE -> UPDATE STUDENT
-router.put('/students/:id', async (req, res) => {
+router.put('/alunos/:id', async (req, res) => {
   // GET ID
   const { id } = req.params
 
@@ -196,7 +196,7 @@ router.put('/students/:id', async (req, res) => {
       },
     })
 
-    return res.status.json({
+    return res.json({
       msg: "Update student",
       student
     })
@@ -211,7 +211,7 @@ router.put('/students/:id', async (req, res) => {
 })
 
 // ROUTE -> DELETE STUDENT
-router.delete('/students/:id', async (req, res) => {
+router.delete('/alunos/:id', async (req, res) => {
   const { id } = req.params
 
   try {

@@ -1,13 +1,14 @@
 import express from 'express'
+import { join } from 'path'
 import prisma from '../../lib/prisma.js'
 
 const router = express.Router()
 
 // ROUTE -> GET ALL STUDENT ACTIVITIES
-router.get('/student/:id/activities', async (req, res) => {
+router.get('/aluno/:studentId/atividades', async (req, res) => {
     try {
         // GET STUDENT WITH THE ID PROVIDED
-        const { id: studentId } = req.params
+        const { studentId } = req.params
 
         const student = await prisma.usuario.findUnique({
             where: {
@@ -45,6 +46,38 @@ router.get('/student/:id/activities', async (req, res) => {
     } catch(error) {
         return res.status(500).json({
             msg: "Listar atividades do aluno",
+            error
+        })
+    }
+})
+
+const storage = new Storage({
+    keyFilename: join(
+      __dirname,
+      '..',
+      '..',
+      '..',
+      'fluid-axis-402017-05332102ad29.json',
+    ),
+    projectId: 'fluid-axis-402017',
+  })
+  
+  const bucket = storage.bucket('easy-hours')
+
+// ROUTE -> SEND ACTIVITY
+router.put('/aluno/:studentId/atividades/:activityId', (req, res) => {
+    // GET STUDENT ID AND ACTIVITY ID
+    const { studentId, activityId } = req.params
+
+    try {
+        // 
+
+        return res.json({
+            msg: "Enviar atividade"
+        })
+    } catch(error) {
+        return res.status(500).json({
+            msg: "Enviar atividade",
             error
         })
     }
