@@ -13,3 +13,5 @@
     [] Os coordenadores precisam aprovar as turmas
     [] Os coordenadores precisam editar atividades
     [] Todos os formulários precisam de uma validação
+    [] O aluno, ao ter sua atividade corrigida, precisa ver a correção
+    [] O coordenador deve pode escolher quantas horas adicionar ao aluno quando fazer a correção da atividade
