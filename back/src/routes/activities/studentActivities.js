@@ -1,5 +1,4 @@
 import express from 'express'
-import { join } from 'path'
 import prisma from '../../lib/prisma.js'
 
 const router = express.Router()
@@ -51,18 +50,18 @@ router.get('/aluno/:studentId/atividades', async (req, res) => {
     }
 })
 
-const storage = new Storage({
-    keyFilename: join(
-      __dirname,
-      '..',
-      '..',
-      '..',
-      'fluid-axis-402017-05332102ad29.json',
-    ),
-    projectId: 'fluid-axis-402017',
-  })
+// const storage = new Storage({
+//     keyFilename: join(
+//       __dirname,
+//       '..',
+//       '..',
+//       '..',
+//       'fluid-axis-402017-05332102ad29.json',
+//     ),
+//     projectId: 'fluid-axis-402017',
+//   })
   
-  const bucket = storage.bucket('easy-hours')
+//   const bucket = storage.bucket('easy-hours')
 
 // ROUTE -> SEND ACTIVITY
 router.put('/aluno/:studentId/atividades/:activityId', (req, res) => {
