@@ -4,6 +4,7 @@
 
 [] Construir o backend
     [] Trazer as funcionalidades feitas na api do next
+        [] Fazer a rota para a adição de apenas um aluno ao sistema
     [] Encontrar uma forma de upload de arquivos, inclusive no ambiente de produção
     
 [] Organizar o código
@@ -15,3 +16,4 @@
     [] Todos os formulários precisam de uma validação
     [] O aluno, ao ter sua atividade corrigida, precisa ver a correção
     [] O coordenador deve pode escolher quantas horas adicionar ao aluno quando fazer a correção da atividade
+    [] Melhorar a forma de tempo das atividades (incluir minutos)
