@@ -8,7 +8,11 @@ const router = express.Router()
 router.get('/solicitacoes-de-suporte', async (req, res) => {
     try {
         // GET ALL SUPPORT REQUESTS FROM DATABASE
-        const supportRequests = await prisma.solicitacaoSuporte.findMany()
+        const supportRequests = await prisma.solicitacaoSuporte.findMany({
+            include: {
+                Resposta: true
+            }
+        })
 
         return res.json({
             msg: "Listar solicitações de suporte",
