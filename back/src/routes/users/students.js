@@ -122,7 +122,7 @@ router.post('/alunos', async (req, res) => {
       }
 
       return res.status(201).json({
-          msg: "Posted new studentS",
+          msg: "Adicionar alunos",
           students
       })
     } catch(error) {

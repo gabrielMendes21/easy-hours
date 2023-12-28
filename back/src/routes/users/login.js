@@ -37,22 +37,28 @@ router.get('/login', (req, res) => {
 // ROUTE -> CREATE A LOGIN SESSION
 router.post('/login', async (req, res) => {
     try {
+        // GET CREDENTIALS FROM THE LOGIN FORM
         const { email, password } = req.body
 
-        const correctCredentials = await checkUserCredentials(email, password)
+        // VERIFY IF CREDENTIALS ARE CORRECT
+        const isCredentialsCorrect = await checkUserCredentials(email, password)
 
-        if (correctCredentials) {
+        // GET USER INFO IF CREDENTIALS ARE CORRECT
+        const userInfo = isCredentialsCorrect ? isCredentialsCorrect : null
+
+        // CREATE TOKEN WITH USER INFORMATION
+        if (isCredentialsCorrect) {
             const token = jwt.sign(
                 {
-                  nome: correctCredentials.nome,
-                  email: correctCredentials.email,
-                  turma: correctCredentials.turma,
-                  escola: correctCredentials.escolaRel,
-                  tipoUsuario: correctCredentials.role,
+                  nome: userInfo.nome,
+                  email: userInfo.email,
+                  turma: userInfo.turma,
+                  escola: userInfo.escolaRel,
+                  tipoUsuario: userInfo.role,
                 },
                 process.env.TOKENSECRET,
                 {
-                  subject: correctCredentials.id.toString(),
+                  subject: userInfo.id.toString(),
                   expiresIn: '7 days',
                 },
               )

@@ -63,7 +63,7 @@ router.get('/aluno/:studentId/atividades', async (req, res) => {
   
 //   const bucket = storage.bucket('easy-hours')
 
-// ROUTE -> SEND ACTIVITY
+// ROUTE -> SEND ACTIVITY (NOT FINISHED)
 router.put('/aluno/:studentId/atividades/:activityId', (req, res) => {
     // GET STUDENT ID AND ACTIVITY ID
     const { studentId, activityId } = req.params
