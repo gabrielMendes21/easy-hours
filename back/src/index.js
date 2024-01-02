@@ -1,7 +1,8 @@
 import cors from 'cors'
 import express from 'express'
-import studentActivitiesRoute from './routes/activities/studentActivities.js'
 import supportRequestsRoute from './routes/supportRequests.js'
+import studentTasksRoute from './routes/tasks/studentTasks.js'
+import tasksRoute from './routes/tasks/tasks.js'
 import loginRoute from './routes/users/login.js'
 import studentsRoute from './routes/users/students.js'
 
@@ -14,8 +15,9 @@ app.use(cors())
 // STUDENT
 app.use(studentsRoute)
 app.use(loginRoute)
-app.use(studentActivitiesRoute)
+app.use(studentTasksRoute)
 app.use(supportRequestsRoute)
+app.use(tasksRoute)
 
 
 // SERVER

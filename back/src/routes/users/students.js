@@ -68,19 +68,12 @@ router.post('/alunos', async (req, res) => {
             "HORAS CONCLUÍDAS": 1
           },
           {
-
-          }
-        ],
-        [
-          {
             "EMAIL": "miguel@gmail.com",
             "RM": 22210,
             "NOME": "Miguel Oliveira",
             "HORAS ANUAIS": 50,
             "HORAS CONCLUÍDAS": 1
           },
-          {
-          }
         ]
       */
       const students = req.body

@@ -3,7 +3,7 @@ import prisma from '../../lib/prisma.js'
 
 const router = express.Router()
 
-// ROUTE -> GET ALL STUDENT ACTIVITIES
+// ROUTE -> GET ALL STUDENT TASKS
 router.get('/aluno/:studentId/atividades', async (req, res) => {
     try {
         // GET STUDENT WITH THE ID PROVIDED
@@ -20,7 +20,7 @@ router.get('/aluno/:studentId/atividades', async (req, res) => {
 
         // VERIFY IF STUDENT EXISTS
         if (student) {
-            // GET ALL ACTIVITIES WITH THE ID
+            // GET ALL TASKS WITH THE ID
             const activities = await prisma.entrega.findMany({
                 where: {
                     codAluno: Number(studentId)
@@ -63,9 +63,9 @@ router.get('/aluno/:studentId/atividades', async (req, res) => {
   
 //   const bucket = storage.bucket('easy-hours')
 
-// ROUTE -> SEND ACTIVITY (NOT FINISHED)
+// ROUTE -> SEND TASK (NOT FINISHED)
 router.put('/aluno/:studentId/atividades/:activityId', (req, res) => {
-    // GET STUDENT ID AND ACTIVITY ID
+    // GET STUDENT ID AND TASK ID
     const { studentId, activityId } = req.params
 
     try {
