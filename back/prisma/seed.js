@@ -37,7 +37,7 @@ async function seed() {
       nomeEscola: 'ETEC Zona Leste',
       Turma: {
         create: {
-          ano: 2023,
+          ano: 2024,
           nomeTurma: '3º DS AMS',
           Usuario: {
             create: [
@@ -77,21 +77,21 @@ async function seed() {
         descricao:
           'Fale sobre o que você aprendeu na última sessão de Design Thinking',
         horasAtividade: 2,
-        prazoEntrega: '2023-11-10T10:00:00.000Z',
+        prazoEntrega: '2024-11-10T10:00:00.000Z',
         codTipoAtividade: 1,
       },
       {
         titulo: 'Horas flexíveis',
         descricao: 'Anexe as horas flexíveis',
         horasAtividade: 20,
-        prazoEntrega: '2023-10-18T10:00:00.000Z',
+        prazoEntrega: '2024-10-18T10:00:00.000Z',
         codTipoAtividade: 2,
       },
       {
         titulo: 'Sessão',
         descricao: 'Fale sobre o que você aprendeu na última sessão',
         horasAtividade: 2,
-        prazoEntrega: '2023-09-05T10:00:00.000Z',
+        prazoEntrega: '2024-09-05T10:00:00.000Z',
         codTipoAtividade: 1,
       },
       {
@@ -99,7 +99,7 @@ async function seed() {
         descricao:
           'Anexe os prints dos seus cursos na plataforma IBM Skills Build',
         horasAtividade: 40,
-        prazoEntrega: '2023-10-07T10:00:00.000Z',
+        prazoEntrega: '2024-10-07T10:00:00.000Z',
         codTipoAtividade: 2,
       },
     ],
@@ -108,7 +108,7 @@ async function seed() {
   await prisma.entrega.createMany({
     data: [
       {
-        dataEntrega: '2023-11-02T04:00:00.000Z',
+        dataEntrega: '2024-11-02T04:00:00.000Z',
         conteudo: {
           conhecimento: 'Aprendi bastante coisa',
           anexos: '',
@@ -133,7 +133,7 @@ async function seed() {
         codAtividade: 1,
       },
       {
-        dataEntrega: '2023-10-09T09:00:00.000Z',
+        dataEntrega: '2024-10-09T09:00:00.000Z',
         conteudo: {
           conhecimento: 'Nenhum',
           anexos: '',
