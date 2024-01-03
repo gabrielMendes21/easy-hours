@@ -1,6 +1,7 @@
 import cors from 'cors'
 import express from 'express'
-import supportRequestsRoute from './routes/supportRequests.js'
+import supportRequestsRoute from './routes/supportRequests/supportRequests.js'
+import taskCorrectionRoute from './routes/taskCorrection/taskCorrection.js'
 import studentTasksRoute from './routes/tasks/studentTasks.js'
 import tasksRoute from './routes/tasks/tasks.js'
 import loginRoute from './routes/users/login.js'
@@ -18,6 +19,7 @@ app.use(loginRoute)
 app.use(studentTasksRoute)
 app.use(supportRequestsRoute)
 app.use(tasksRoute)
+app.use(taskCorrectionRoute)
 
 
 // SERVER

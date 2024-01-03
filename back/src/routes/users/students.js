@@ -51,31 +51,31 @@ router.get('/alunos', async (req, res) => {
 })
 
 // ROUTE -> ADD STUDENTS TO THE SYSTEM
+/*
+    REQUEST BODY EXAMPLE
+    [
+      {
+        "EMAIL": "gabriel@gmail.com",
+        "RM": 22316,
+        "NOME": "Gabriel Mendes",
+        "HORAS ANUAIS": 85,
+        "HORAS CONCLUÍDAS": 1
+      },
+      {
+        "EMAIL": "miguel@gmail.com",
+        "RM": 22210,
+        "NOME": "Miguel Oliveira",
+        "HORAS ANUAIS": 50,
+        "HORAS CONCLUÍDAS": 1
+      },
+    ]
+*/
 router.post('/alunos', async (req, res) => {
     try {
       // GET SCHOOL AND CLASS ID  
       const schoolId = req.query.school
       const classId = req.query.class
 
-      // STUDENTS DATA
-      /* EXAMPLE
-        [
-          {
-            "EMAIL": "gabriel@gmail.com",
-            "RM": 22316,
-            "NOME": "Gabriel Mendes",
-            "HORAS ANUAIS": 85,
-            "HORAS CONCLUÍDAS": 1
-          },
-          {
-            "EMAIL": "miguel@gmail.com",
-            "RM": 22210,
-            "NOME": "Miguel Oliveira",
-            "HORAS ANUAIS": 50,
-            "HORAS CONCLUÍDAS": 1
-          },
-        ]
-      */
       const students = req.body
       
       // PASS FOR EACH STUDENT OF THE ARRAY, AND ADD THE DATA TO DATABASE
@@ -164,6 +164,14 @@ router.get('/alunos/:id', async (req, res) => {
 
 
 // ROUTE -> UPDATE STUDENT
+/*
+    REQUEST BODY EXAMPLE
+    {
+      "nome": "John Doe",
+      "email": "johndoe@domain.com",
+      "rm": 54679
+    }
+*/
 router.put('/alunos/:id', async (req, res) => {
   // GET ID
   const { id } = req.params
@@ -175,13 +183,6 @@ router.put('/alunos/:id', async (req, res) => {
       where: {
         id: Number(id),
       },
-      /* DATA EXAMPLE
-        {
-          "nome": "Gabriel",
-          "email": "gabriel.26056@gmail.com",
-          "rm": 1111
-        }
-      */
       data: {
         nome: req.body.nome,
         email: req.body.email,
@@ -208,7 +209,7 @@ router.delete('/alunos/:id', async (req, res) => {
   const { id } = req.params
 
   try {
-    // Remove student tasks
+    // REMOVE STUDENT TASKS
     const studentTasks = await prisma.entrega.findMany({
       where: {
         codAluno: Number(id),

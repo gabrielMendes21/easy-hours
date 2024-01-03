@@ -35,6 +35,14 @@ router.get('/login', (req, res) => {
 })
 
 // ROUTE -> CREATE A LOGIN SESSION
+/*
+    REQUEST BODY EXAMPLE
+
+    {
+        "email": johndoe@domain.com,
+        "password": "54679jo"
+    }
+*/
 router.post('/login', async (req, res) => {
     try {
         // GET CREDENTIALS FROM THE LOGIN FORM
