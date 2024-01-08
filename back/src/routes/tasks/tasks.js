@@ -14,7 +14,7 @@ router.get('/atividades/:id', async (req, res) => {
             where: {
                 id: Number(taskId)
             },
-            include: {
+            select: {
                 tipoAtividade: true
             }
         })
@@ -40,8 +40,7 @@ router.get('/atividades/:id', async (req, res) => {
         "taskDetails": "Do something",
         "taskDueDate": "2001-10-03T19:02:43.165Z",
         "taskHours": "23",
-        "taskType": "1"
-
+        "taskType": "SESSAO"
     }
 */
 router.post('/atividades', async (req, res) => {
@@ -56,7 +55,7 @@ router.post('/atividades', async (req, res) => {
             descricao: data.taskDetails,
             prazoEntrega: new Date(data.taskDueDate),
             horasAtividade: Number(data.taskHours),
-            codTipoAtividade: Number(data.taskType),
+            tipoAtividade: data.taskType,
             },
         })
         

@@ -64,31 +64,16 @@ model Usuario {
 
 model Atividade {
   // Attributes
-  id             Int      @id @default(autoincrement()) @map("codAtividade")
+  id             Int           @id @default(autoincrement()) @map("codAtividade")
   titulo         String
   descricao      String
   anexos         String?
   horasAtividade Int
-  dataCriacao    DateTime @default(now())
+  dataCriacao    DateTime      @default(now())
   prazoEntrega   DateTime
-
-  // Relations
-  tipoAtividade    tipoAtividade @relation(fields: [codTipoAtividade], references: [id])
-  codTipoAtividade Int
+  tipoAtividade  TipoAtividade
 
   entrega Entrega[]
-
-  // Needed when using planetScale
-  @@index([codTipoAtividade])
-}
-
-model tipoAtividade {
-  // Attributes
-  id            Int    @id @default(autoincrement()) @map("codTipoAtividade")
-  tipoAtividade String
-
-  // Relations
-  Atividade Atividade[]
 }
 
 model Entrega {
@@ -183,4 +168,11 @@ enum Role {
   ETEC_COORDINATOR
   IBM_COORDINATOR
   ADMIN
+}
+
+enum TipoAtividade {
+  SESSAO
+  HORAS_FLEXIVEIS
+  PALESTRA
+  SKILLS_BUILD
 }

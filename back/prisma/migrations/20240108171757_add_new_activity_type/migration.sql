@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE `atividade` MODIFY `tipoAtividade` ENUM('SESSAO', 'HORAS_FLEXIVEIS', 'PALESTRA', 'SKILLS_BUILD') NOT NULL;

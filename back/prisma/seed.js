@@ -3,20 +3,6 @@ import bcrypt from 'bcrypt'
 import prisma from '../src/lib/prisma.js'
 
 async function seed() {
-  await prisma.tipoAtividade.createMany({
-    data: [
-      {
-        tipoAtividade: 'Sessão',
-      },
-      {
-        tipoAtividade: 'Horas flexíveis',
-      },
-      {
-        tipoAtividade: 'Palestra',
-      },
-    ],
-  })
-
   // Coordinator password
   const hashedPassword1 = await bcrypt.hash('111111', 10)
   await prisma.usuario.create({
@@ -78,21 +64,21 @@ async function seed() {
           'Fale sobre o que você aprendeu na última sessão de Design Thinking',
         horasAtividade: 2,
         prazoEntrega: '2024-11-10T10:00:00.000Z',
-        codTipoAtividade: 1,
+        tipoAtividade: "SESSAO"
       },
       {
         titulo: 'Horas flexíveis',
         descricao: 'Anexe as horas flexíveis',
         horasAtividade: 20,
         prazoEntrega: '2024-10-18T10:00:00.000Z',
-        codTipoAtividade: 2,
+        tipoAtividade: 'HORAS_FLEXIVEIS'
       },
       {
         titulo: 'Sessão',
         descricao: 'Fale sobre o que você aprendeu na última sessão',
         horasAtividade: 2,
         prazoEntrega: '2024-09-05T10:00:00.000Z',
-        codTipoAtividade: 1,
+        tipoAtividade: 'SESSAO'
       },
       {
         titulo: 'IBM Skills Build',
@@ -100,7 +86,7 @@ async function seed() {
           'Anexe os prints dos seus cursos na plataforma IBM Skills Build',
         horasAtividade: 40,
         prazoEntrega: '2024-10-07T10:00:00.000Z',
-        codTipoAtividade: 2,
+        tipoAtividade: "SKILLS_BUILD"
       },
     ],
   })
