@@ -8,7 +8,7 @@ const router = express.Router()
     REQUEST BODY EXAMPLE
     {
         "assessment": "Great job",
-        "taskVal": "approved"
+        "isTaskApproved": true
     }
 */
 router.post('/correcao', async (req, res) => {
@@ -19,17 +19,13 @@ router.post('/correcao', async (req, res) => {
         // GET TASK DELIVERY ID AND COORDINTAOR ID FROM QUERY PARAMS
         const { taskDeliveryId, coordinatorId } = req.query
 
-        // TRUE => TASK IS APPROVED
-        // FALSE => TASK IS NOT APPROVED
-        const isTaskApproved = data.taskVal === 'approved'
-
-        // CREATE A CORRECTION IN DATABSE
+        // CREATE A CORRECTION IN DATABASE
         await prisma.correcao.create({
             data: {
                 codEntrega: Number(taskDeliveryId),
                 conteudo: data.assessment,
                 codCoordenador: Number(coordinatorId),
-                entregaAprovada: !!isTaskApproved,
+                entregaAprovada: data.isTaskApproved,
             },
         })
 
@@ -49,7 +45,7 @@ router.post('/correcao', async (req, res) => {
         })
 
         // ADD HOURS TO STUDENT IF TASK WAS APPROVED BY THE COORDINATOR
-        if (isTaskApproved) {
+        if (data.isTaskApproved) {
             // GET STUDENT HOURS OF THE CURRENT YEAR
             const hours = taskDelivery.aluno.Horas.find((hours) => {
                 return hours.ano === new Date().getFullYear()
@@ -70,7 +66,7 @@ router.post('/correcao', async (req, res) => {
         }
 
         const responseData = {
-            correcaoDaAtividade: isTaskApproved ? "Atividade aprovada" : "Atividade reprovada",
+            correcaoDaAtividade: data.isTaskApproved ? "Atividade aprovada" : "Atividade reprovada",
             horasDaAtividade: taskDelivery.atividade.horasAtividade
         }
 
